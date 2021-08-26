@@ -1,0 +1,35 @@
+clear all;clc;
+Data = importdata('KF-1_DW.txt');
+pos_DW=Data.data(:,2);
+ang_DW=Data.data(:,3);
+Data = importdata('KF-1_NDW.txt');
+pos_NDW=Data.data(:,2);
+ang_NDW=Data.data(:,3);
+
+Fonts=18;
+k=1:2000;
+fig1=figure(1);
+set(fig1, 'Position', [0 0 1000 350]); 
+set(fig1, 'PaperSize', [29.7000 21.0000]); 
+set(fig1,'PaperPosition',[1 1 21 7]);
+plot(k,pos_DW(k),'b','LineWidth',2);hold on;
+plot(k,pos_NDW(k),'-.g','LineWidth',2);hold off;
+le11=xlabel('$k$');
+le12=ylabel('$\alpha$ (m)');
+set(gca,'FontSize',Fonts);
+set(le11,'Interpreter','latex');
+set(le12,'Interpreter','latex');
+saveas(fig1,'POSN1','pdf');
+
+fig2=figure(2);
+set(fig2, 'Position', [0 0 1000 350]); 
+set(fig2, 'PaperSize', [29.7000 21.0000]); 
+set(fig2,'PaperPosition',[1 1 21 7]);
+plot(k,ang_DW(k),'b','LineWidth',2);hold on;
+plot(k,ang_NDW(k),'-.g','LineWidth',2);hold off;
+le11=xlabel('$k$');
+le12=ylabel('$\theta$ (rad)');
+set(gca,'FontSize',Fonts);
+set(le11,'Interpreter','latex');
+set(le12,'Interpreter','latex');
+saveas(fig2,'ANGN1','pdf');
